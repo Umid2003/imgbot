@@ -5,7 +5,7 @@ import axios from "axios";
 // import { keyboard } from './node_modules/telegraf/src/markup';
 // import { callbackQuery } from './node_modules/telegraf/src/filters';
 
-const bot = new Telegraf(process.env.TELEGRAM_TOKEN, { polling: true });
+const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 
 // bot.help((ctx) => ctx.reply('Send me a sticker'))
 // bot.command('about',ctx=>ctx.reply('About Us'))
@@ -40,7 +40,7 @@ bot.on("text", async (ctx) => {
   try {
     if (apiName == "Region") {
       ctx.reply("Iltimos hudud nomini kiriting (Italian, Canadian ...)");
-    }
+    } 
     if(apiName=="Random"){
         await axios 
             .get(process.env.RANDOM_API)
@@ -70,4 +70,4 @@ bot.on("text", async (ctx) => {
     .catch((err) => console.log(err));
 });
 
-bot.launch();
+bot.launch({dropPendingUpdates:true});
